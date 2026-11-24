@@ -1,8 +1,10 @@
 # 💰 AI-Powered Budget Management System
 
-A full-stack personal finance application built with **React.js, React Native, Spring Boot, MySQL**, and **Spring AI**.
+A full-stack personal finance management application built with **React.js, React Native (Expo), Java 17, Spring Boot, MySQL, and Spring AI**.
 
-Track income, expenses, budgets, and spending patterns through web and mobile applications, with AI-powered financial assistance.
+The application enables users to manage income, expenses, budgets, and financial goals through web and mobile interfaces, with AI-powered financial assistance and personalized insights.
+
+> **Architecture:** Three independent repositories (Web, Mobile, and Backend) connected through a shared Spring Boot REST API.
 
 ## 🚀 Live Demo
 
@@ -10,73 +12,111 @@ Track income, expenses, budgets, and spending patterns through web and mobile ap
 
 ## 📂 Project Repositories
 
+The project is maintained across three separate repositories.
+
 ### 🌐 Web Application
-React.js frontend for the web platform.
+React.js frontend built with Vite and Tailwind CSS.
 
 **[View Web Repository](https://github.com/AnkanIT24/budget-tracker-frontend)**
 
 ### 📱 Mobile Application
-React Native (Expo) mobile application using the same backend API.
+React Native (Expo) application integrated with the same Spring Boot backend API.
 
-**[View Mobile Repository](https://github.com/AnkanIT24/budget-tracker-frontend-react-native)**
+**[View Mobile Repository](https://github.com/AnkanIT24/budget-tracker-mobile)**
 
 ### ⚙️ Backend API
-Spring Boot REST API handling authentication, transactions, categories, budgets, and database operations.
+Java and Spring Boot REST API responsible for authentication, business logic, financial operations, and AI integration.
 
 **[View Backend Repository](https://github.com/AnkanIT24/budget-tracker-backend)**
 
-## 🏗️ Architecture
+## 🏗️ System Architecture
+
+The web and mobile applications communicate with a shared Spring Boot backend.
 
 ```text
-React.js Web ────────┐
-                     │
-React Native Mobile ─┤
-                     ▼
+       React.js Web       React Native Mobile
+             │                    │
+             └─────────┬──────────┘
+                       │
+                       ▼
               Spring Boot REST API
-                     │
-          ┌──────────┴──────────┐
-          │                     │
-   Spring Security          Spring AI
-        + JWT                   │
-          │                     ▼
-          │                    LLM
-          │
-          ▼
-   Spring Data JPA
-          │
-          ▼
-        MySQL
+                       │
+          ┌────────────┼─────────────┐
+          │            │             │
+          ▼            ▼             ▼
+   Spring Security  Financial     Spring AI
+       + JWT        Services         │
+          │            │             ▼
+          │            │            LLM
+          │            │
+          ▼            ▼
+             Spring Data JPA
+                    │
+                    ▼
+                  MySQL
+```
 
+## ✨ Core Features
 
-✨ Core Features
-1.JWT authentication and user isolation
-2.Income and expense tracking
-3.Category management
-4.Monthly budgets and spending limits
-5.Transaction filtering and summaries
-6.Responsive web application
-7.React Native mobile application
-8.Dockerized Spring Boot backend
-9.AI-powered spending analysis and assistance
+1. JWT-based authentication and user-specific data isolation.
+2. Income and expense tracking.
+3. Category management for financial transactions.
+4. Monthly budget creation and spending limits.
+5. Transaction filtering, pagination, and summaries.
+6. Financial dashboard with spending information.
+7. Responsive React.js web application.
+8. React Native (Expo) mobile application using the shared backend.
+9. Dockerized Spring Boot backend.
+10. RESTful API integration between frontend applications and backend services.
 
+## 🤖 AI-Powered Financial Features
 
-🤖 AI Features
-1.Natural-language queries about personal spending
-2.AI-powered spending analysis
-3.Budget insights and recommendations
-4.Tool calling for controlled access to financial data
-5.User-authorized budget actions
+The application integrates **Spring AI and LLMs** to provide contextual financial assistance.
 
-| Layer       | Technologies                      |
-| ----------- | --------------------------------- |
-| Web         | React.js, Vite, Tailwind CSS      |
-| Mobile      | React Native, Expo                |
-| Backend     | Java 17, Spring Boot              |
-| Security    | Spring Security, JWT              |
-| Database    | MySQL, Spring Data JPA, Hibernate |
-| AI          | Spring AI, LLMs                   |
-| Engineering | Docker, Git, GitHub, Maven        |
+- **Natural-Language Financial Chat:** Ask questions about recorded income, expenses, budgets, and spending patterns.
+- **Financial Context Analysis:** Uses structured financial data and Java-calculated metrics to provide contextual explanations.
+- **Spending Pattern Analysis:** Identifies spending concentration and highlights significant expense categories.
+- **Budget Risk Analysis:** Evaluates budget utilization and identifies categories approaching or exceeding their limits.
+- **Goal Feasibility Analysis:** Calculates financial goal feasibility using Java and generates personalized LLM-based explanations.
+- **Personalized Recommendations:** Uses LLMs to explain Java-generated financial recommendations and suggest practical actions.
 
+### 🧠 AI Implementation Approach
 
-👨‍💻 Author
-Ankan Chakraborty
+The AI integration follows a Java-first financial analysis approach:
+
+1. **Data Retrieval:** The backend retrieves the authenticated user's financial context.
+2. **Java-Based Calculations:** Financial metrics, budget utilization, spending patterns, and goal feasibility are calculated by backend services.
+3. **Context Construction:** Structured financial information and calculated results are supplied to the LLM.
+4. **LLM Processing:** Spring AI `ChatClient` processes the context and user questions using application-defined prompts.
+5. **Personalized Responses:** The LLM generates natural-language explanations, financial insights, and personalized recommendations.
+
+**Design principle:** The LLM is responsible for interpreting and explaining financial information, while Java remains the source of truth for financial calculations. This reduces the risk of incorrect financial figures being generated by the model.
+
+The AI assistant provides analysis and recommendations; it does not autonomously execute financial transactions or modify budgets.
+
+## 🛠️ Technology Stack
+
+| Layer | Technologies |
+|---|---|
+| Web Frontend | React.js, Vite, Tailwind CSS |
+| Mobile Frontend | React Native, Expo |
+| Backend | Java 17, Spring Boot |
+| Security | Spring Security, JWT |
+| Database | MySQL |
+| ORM | Spring Data JPA, Hibernate |
+| AI Integration | Spring AI, LLMs, ChatClient, Prompt Engineering |
+| Containerization | Docker |
+| Deployment | Vercel, Render |
+| Development Tools | Git, GitHub, Maven, Postman |
+
+## 🚀 Deployment
+
+- **Web Application:** Deployed on Vercel.
+- **Backend API:** Containerized using Docker and deployed on Render.
+- **Mobile Application:** Built with React Native and Expo, consuming the shared backend REST API.
+
+## 👨‍💻 Author
+
+**Ankan Chakraborty**
+
+[GitHub](https://github.com/AnkanIT24)
